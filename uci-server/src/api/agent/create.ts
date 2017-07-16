@@ -1,8 +1,7 @@
 import * as uuid from 'uuid/v1';
-import { EventData } from '../../persistence/event-log';
+import { EventData } from 'uci-core-node/dist/persistence/event-log';
 import { IEndpoint, IEndpointHandler } from '../endpoint';
 import { ApplicationState } from '../../state/state';
-import { generateAgentSecret } from '../../util/generate-agent-secret';
 
 class CreateAgentCommandHandler implements IEndpointHandler {
     private state: ApplicationState;
@@ -32,12 +31,10 @@ class CreateAgentCommandHandler implements IEndpointHandler {
 
     async execute(): Promise<any> {
         this.agentId = uuid();
-        this.secret = await generateAgentSecret();
         
         const data = {
             agentId: this.agentId,
             name: this.name,
-            secret: this.secret
         };
 
         const event = {

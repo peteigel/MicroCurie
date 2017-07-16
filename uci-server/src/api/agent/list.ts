@@ -1,4 +1,4 @@
-import { EventData } from '../../persistence/event-log';
+import { EventData } from 'uci-core-node/dist/persistence/event-log';
 import { IEndpoint, IEndpointHandler } from '../endpoint';
 import { ApplicationState } from '../../state/state';
 

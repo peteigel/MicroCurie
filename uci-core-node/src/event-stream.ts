@@ -1,6 +1,6 @@
-import { EventLog, EventData } from '../persistence/event-log';
+import { EventLog, EventData } from './persistence/event-log';
 
-type EventListener = (event: EventData)=>void;
+export type EventListener = (event: EventData)=>void;
 
 export class EventStream {
     private log: EventLog;

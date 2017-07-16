@@ -1,0 +1,11 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+		"baseUrl": "src",
+        "target": "esnext",
+        "strict": true,
+        "module": "commonjs",
+        "outDir": "dist",
+        "declaration": true
+    }
+}

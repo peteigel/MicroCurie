@@ -4,9 +4,11 @@
   "description": "1*10^-6 of a CI server",
   "main": "dist/app.js",
   "dependencies": {
+    "@types/socket.io": "^1.4.29",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "sqlite3": "^3.1.8",
+    "socket.io": "^2.0.3",
+    "uci-core-node": "../uci-core-node",
     "uuid": "^3.1.0"
   },
   "devDependencies": {

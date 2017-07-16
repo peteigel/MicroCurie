@@ -1,0 +1,25 @@
+{
+  "name": "uci-core-node",
+  "version": "0.1.0",
+  "description": "The common libraries for MicroCurie's node packages",
+  "devDependencies": {
+    "@types/node": "^8.0.7",
+    "@types/sqlite3": "^3.1.0",
+    "@types/uuid": "^3.0.0",
+    "mocha": "^3.4.2",
+    "typescript": "^2.4.1"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "test": "mocha --harmony test/**/*.spec.js",
+    "build": "tsc"
+  },
+  "keywords": [
+    "CI"
+  ],
+  "author": "Pete Eigel",
+  "license": "MIT",
+  "dependencies": {
+    "sqlite3": "^3.1.8"
+  }
+}

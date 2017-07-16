@@ -1,8 +1,8 @@
 import { EventData, IEventLogProvider } from './event-log';
 
 export class MemoryProvider implements IEventLogProvider {
-    eventLogs: Map<string, MemoryEventLog>;
-    _eventLogKeepAlive: MemoryEventLog[];
+    private eventLogs: Map<string, MemoryEventLog>;
+    private _eventLogKeepAlive: MemoryEventLog[];
 
     constructor() {
         this.eventLogs = new Map();

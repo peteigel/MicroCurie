@@ -1,10 +1,11 @@
-import { EventData } from '../../persistence/event-log';
-import { EventStream } from '../event-stream'; 
+import { EventData } from 'uci-core-node/dist/persistence/event-log';
+import { EventStream } from 'uci-core-node/dist/event-stream'; 
+import * as RSA from 'uci-core-node/dist/security/rsa';
 
 export type AgentData = {
     agentId: string,
     name: string,
-    secret: string,
+    publicKey?: RSA.PublicKey,
     lastUpdated: number,
     created: number
 };

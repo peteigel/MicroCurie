@@ -1,7 +1,7 @@
 const { AgentsProjection } = require('../../../../dist/state/projection/agents');
-const { EventStream } = require('../../../../dist/state/event-stream');
-const { EventLog } = require('../../../../dist/persistence/event-log');
-const { MemoryProvider } = require('../../../../dist/persistence/memory-provider');
+const { EventStream } = require('uci-core-node/dist/event-stream');
+const { EventLog } = require('uci-core-node/dist/persistence/event-log');
+const { MemoryProvider } = require('uci-core-node/dist/persistence/memory-provider');
 const assert = require('assert');
 
 describe('AgentsProjection', function () {
@@ -34,7 +34,7 @@ describe('AgentsProjection', function () {
             eventStream = null;
         });
 
-        it ('should be retriveable by id', function () {
+        it ('should be retrievable by id', function () {
             assert.equal(agents.getById('puppy').name, 'test-agent');
         });
 

@@ -1,14 +1,22 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import { logger } from '../logger';
+import * as http from 'http';
+import * as SocketIO from 'socket.io';
+import { logger } from 'uci-core-node/dist/logger';
 import { IEndpoint } from './endpoint';
+import { WebSocketHandler } from './websocket-handler'
 
 export class API {
+    server: http.Server;
     app: express.Application;
+    io: SocketIO.Server;
     port: number;
 
     constructor(port: number) {
         this.app = express();
+        this.server = http.createServer(this.app);
+        this.io = SocketIO(this.server);
+
         this.app.use(bodyParser.json());
         this.port = port;
         
@@ -20,6 +28,10 @@ export class API {
     registerCommandHandler(endpoint: IEndpoint) {
         const params = endpoint.params();
         this.app.post(params.route, this.handleEndpoint.bind(this, endpoint));
+    }
+
+    createWebSocketNamespace(nsp: string) {
+        return this.io.of(nsp);
     }
 
     handleEndpoint(

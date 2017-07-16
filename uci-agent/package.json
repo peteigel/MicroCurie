@@ -1,0 +1,24 @@
+{
+  "name": "uci-agent",
+  "version": "0.1.0",
+  "description": "A build agent for the MicroCurie build system",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "mocha --harmony test/**/*.spec.js",
+    "build": "tsc",
+    "start": "node --harmony dist/app.js"
+  },
+  "keywords": [
+    "CI"
+  ],
+  "author": "Pete Eigel",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^8.0.13",
+    "typescript": "^2.4.1"
+  },
+  "dependencies": {
+    "@types/socket.io-client": "^1.4.29",
+    "socket.io-client": "^2.0.3"
+  }
+}
