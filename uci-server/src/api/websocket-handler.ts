@@ -26,8 +26,9 @@ export class WebSocketHandler {
     }
 
     handleConnection(socket: SocketIO.Socket) {
+        console.log('WS_CONNECT');
         this.sockets.set(socket.id, socket);
-        
+
         socket.on('disconnect', () => {
             this.sockets.delete(socket.id);
         });

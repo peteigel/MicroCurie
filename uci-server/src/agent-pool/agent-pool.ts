@@ -27,13 +27,15 @@ export class AgentPool {
                 resolve(false);
             }, timeout);
 
-            socket.emit('authentication-request', {
+            socket.emit('begin-auth', {
                 serverKey: serverKey.publicKey.key
             });
 
-            socket.once('authentication-resonse', raw => {
+            socket.once('auth-resonse', async (raw) => {
                 const env = new RSAEnvelope().parse(raw);
                 // TODO: actual authentication flow
+                const d = await env.unpack(serverKey.privateKey);
+                console.log(d);
                 resolve(true);
             });
         });

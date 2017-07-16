@@ -30,6 +30,13 @@ export class PublicKey {
 
         return this.fingerpintCache;
     }
+
+    matches(other: PublicKey): boolean {
+        return crypto.timingSafeEqual(
+            new Buffer(this.key),
+            new Buffer(other.key)
+        );
+    }
 }
 
 export class PrivateKey {
@@ -64,7 +71,7 @@ export async function generatePrivateKey(bytes = 2048, options?: OpenSSLOptions)
 }
 
 export async function generatePublicKey(privateKey: PrivateKey, options?: OpenSSLOptions) {
-    const key = await openssl(['rsa', '-pubout'], privateKey.key, options); 
+    const key = await openssl(['rsa', '-pubout'], privateKey.key, options);
     return new PublicKey(key);
 }
 
@@ -96,7 +103,7 @@ function openssl(
         const timeoutHandle = setTimeout(() => {
             reject(new Error(`openssl(): Timeout Reached (${_options.timeout} ms)`));
         }, _options.timeout);
-        
+
         proc.on('exit', (code, signal) => {
             clearTimeout(timeoutHandle);
 

@@ -15,11 +15,13 @@ export class API {
     constructor(port: number) {
         this.app = express();
         this.server = http.createServer(this.app);
-        this.io = SocketIO(this.server);
+        this.io = SocketIO(this.server, {
+            path: '/ws'
+        });
 
         this.app.use(bodyParser.json());
         this.port = port;
-        
+
         this.app.get('/health', (req, res) => {
             res.end('OK.')
         });
@@ -50,7 +52,7 @@ export class API {
         }
 
         let validationError;
-        
+
         try {
             validationError = handleEndpoint.validate(request.body);
         } catch (e) {
@@ -86,7 +88,7 @@ export class API {
 
     listen() {
         return new Promise<void>(resolve => {
-            this.app.listen(this.port, resolve);
+            this.server.listen(this.port, resolve);
         });
     }
 }
