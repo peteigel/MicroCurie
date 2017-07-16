@@ -31,11 +31,12 @@ export class AgentPool {
                 serverKey: serverKey.publicKey.key
             });
 
-            socket.once('auth-resonse', async (raw) => {
+            socket.once('auth-response', async (raw) => {
                 const env = new RSAEnvelope().parse(raw);
                 // TODO: actual authentication flow
                 const d = await env.unpack(serverKey.privateKey);
                 console.log(d);
+                clearTimeout(timeoutHandle);
                 resolve(true);
             });
         });

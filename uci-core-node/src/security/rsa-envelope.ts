@@ -44,7 +44,7 @@ export class RSAEnvelope {
     async pack(to: RSA.PublicKey, from: RSA.PublicKey, data: any): Promise<void> {
         this.senderKey = from;
         this.recipientKey = to;
-        const dataKey = await promisify(crypto.randomBytes)(12);
+        const dataKey = await promisify(crypto.randomBytes)(64);
         console.log('PACKED_KEY', dataKey);
 
         this.encryptedDataKey = to.encryptBuffer(dataKey);
